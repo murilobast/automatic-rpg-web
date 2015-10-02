@@ -1,0 +1,139 @@
+.selection
+  padding 5% 1%
+  position absolute
+  top 0
+  bottom 0
+  right 0
+  left 0
+  overflow hidden
+  &__header
+    height 5vh
+    background #F64747
+    width 90%
+    margin auto
+    border-radius 3px
+    text-align center
+    h3
+      color #E4F1FE
+      text-transform uppercase
+      line-height 5vh
+  &__characters
+    position absolute
+    width 100% 
+    top 12vh
+    font-size 0
+    text-align center
+    height 32vh
+    padding 2vh
+    box-sizing border-box 
+    &__character
+      font-size 2rem
+      width 29.3%
+      margin 5% 2%
+      display inline-block
+      box-sizing border-box
+      position relative
+      border-radius 5px
+      overflow hidden
+      opacity 0.45 
+      transition all 0.3s ease-in-out
+      &.selected
+        opacity 1
+        margin 0 2%
+      &__header
+        height 20px
+        background #34495E
+        position absolute
+        top 0
+        width 100%
+      &__image
+        font-size 0
+        img
+          width 100%
+      &__attr
+        position absolute
+        top 4px
+        left 4px
+        padding 0 4px
+        height 1.2rem
+        background #F64747
+        color #E4F1FE
+        font-size .9rem
+        line-height 1.2rem
+        border-radius 5px
+        text-transform uppercase
+      &__class
+        position absolute
+        bottom 0
+        right 0
+        background #34495E
+        height 1.2rem
+        font-size 0.8rem
+        color #E4F1FE
+        text-transform uppercase
+        padding 0 4px 0 8px
+        line-height 1.2rem
+        border-radius 5px 0 0
+  &__description
+    height 20vh
+    position absolute
+    bottom 28vh 
+    background rgba(0, 0, 0, 0.3)
+  &__name
+    height 25vh
+    position absolute
+    bottom 3vh
+    width 100% 
+    padding 8px
+    box-sizing border-box 
+    &__input 
+      text-align center
+      label, input
+        text-transform uppercase
+        border-radius 4px
+        margin 4px auto 
+      label
+        color #E4F1FE
+        width auto
+        display inline-block
+        font-weight bold
+      input 
+        display block
+        border 2px solid #34495E
+        padding 6px
+        font-size 0.8em
+        width 80%
+        text-align center        
+        &.floating
+          position fixed
+          top 10vh
+          left 0
+          right 0
+          margin auto
+          padding 8px 16px
+          font-size 1rem 
+          font-weight bold
+          text-decoration none
+          text-transform initial
+          z-index 1
+    &__submit
+      margin auto
+      display block
+      background #2196F3
+      border 0
+      color #E4F1FE 
+      padding 8px 32px
+      font-size 0.8rem
+      text-transform uppercase 
+      margin-top 16px
+      border-radius 4px
+      
+.opacity
+  transition all 0.3s ease-in-out
+  background rgba(0, 0, 0, .7) 
+  position fixed
+  top 0
+  bottom 0
+  right 0
+  left 0
+  display none

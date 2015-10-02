@@ -1,0 +1,26 @@
+template(name='charSelect')
+  .selection
+    .selection__header
+      h3 Select
+    .selection__characters
+      each getClasses
+        +class
+    .selection__description
+      .selection__description__text #{description}
+    .selection__name
+      form#sendName
+        .selection__name__input
+          label Player Name
+          input(name='name' type='text' placeholder='Enter your character name')#charName
+        input(type='submit' value='Create').selection__name__submit
+    .opacity
+        
+template(name='class')
+  .selection__characters__character(class='{{isSelected}}')#class
+    .selection__characters__character__header
+    .selection__characters__character__attr #{attr}
+    .selection__characters__character__image
+      img(src="/#{name}.jpg")
+    .selection__characters__character__class #{name}
+
+
