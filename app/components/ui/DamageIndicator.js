@@ -13,7 +13,7 @@ class DamageIndicator extends Component {
 	}
 
 	pushItem() {
-		const { queue } = this.state
+		const queue = [...this.state.queue]
 		const damage = (Math.random() * 1500).toFixed(0)
 		const id = this.generateKey(damage)
 
@@ -29,7 +29,7 @@ class DamageIndicator extends Component {
 
 	componentDidMount() {
 		setInterval(() => {
-			// this.pushItem()
+			this.pushItem()
 		}, 300)
 	}
 
@@ -37,15 +37,12 @@ class DamageIndicator extends Component {
 		return `${(Math.random() * 20).toFixed(0)}-item-${damage}`
 	}
 
-	unmountItem(id) {
-
+	unmountItem(_id) {
 		setTimeout(() => {
-			let { queue } = this.state
-			let index = queue.findIndex((item) => item.id === id)
-			queue = queue.splice(index, 1)
+			const queue = [...this.state.queue].filter(({id}) => id !== _id)
 
 			this.setState({ queue })
-		}, 2000)
+		}, 1200)
 	}
 
 	render() {

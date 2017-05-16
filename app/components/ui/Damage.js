@@ -7,18 +7,16 @@ import colors from '../../constants/colors'
 class Damage extends Component {
 	state = {
 		pos: new Animated.Value(0),
-		opacity: new Animated.Value()
+		opacity: new Animated.Value(1)
 	}
 
 	animate() {
 		const timing = Animated.timing;
-
-		Animated.sequence([
+		Animated.parallel([
 			timing(this.state.pos, {
 				toValue: 100,
 				duration: 1200
 			}),
-			Animated.delay(400),
 			timing(this.state.opacity, {
 				toValue: 0,
 				duration: 1200
@@ -31,19 +29,14 @@ class Damage extends Component {
 	}
 
 	render() {
-		const { damage, id } = this.props
-		const { pos, opacity } = this.state
-
-		console.log('spawn', id)
-
 		return (
 			<Animated.Text
 				style={[
 					styles.text,
-					{ bottom: pos }
+					{ bottom: this.state.pos, opacity: this.state.opacity }
 				]}
 			>
-				{damage}
+				{this.props.damage}
 			</Animated.Text>
 		)
 	}

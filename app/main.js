@@ -67,7 +67,7 @@ class App extends Component {
 			}
 			
 			this.forceUpdate()
-		}, 5)
+		}, 1000)
 	}
 
 	generateSquad() {
