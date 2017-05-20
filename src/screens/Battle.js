@@ -2,16 +2,16 @@ import React, { Component } from 'react'
 import { StyleSheet, View } from 'react-native'
 
 // Constants
-import ships from './constants/ships'
+import ships from '../constants/ships'
 
 // Components
-import Ship from './components/ships/PlayerShip'
-import Stats from './components/ui/Stats'
-import DamageIndicator from './components/ui/DamageIndicator'
+import Ship from '../components/ships/PlayerShip'
+import Stats from '../components/ui/Stats'
+import DamageIndicator from '../components/ui/DamageIndicator'
 
 // Libs
-import ShipLogic from './lib/Ship'
-import randomBetween from './lib/helpers/randomBetween'
+import ShipLogic from '../lib/Ship'
+import randomBetween from '../lib/helpers/randomBetween'
 
 const playerStats = {
 	attack: 320,
@@ -36,6 +36,11 @@ class App extends Component {
 		squad: []
 	}
 
+	death() {
+		clearInterval(this.interval)
+		this.props.backToStart()
+	}
+
 	componentWillMount() {
 		const player = new ShipLogic(playerStats)
 		const enemy = new ShipLogic(enemyStats)
@@ -48,7 +53,7 @@ class App extends Component {
 		let { player, enemy } = this.state
 		let level = 1
 
-		let interval = setInterval(() => {
+		this.interval = setInterval(() => {
 			player.attack(enemy)
 			enemy.attack(player)
 
@@ -58,16 +63,21 @@ class App extends Component {
 				player.heal()
 				enemy = new ShipLogic(enemyStats, level)
 				this.generateSquad()
+				this.props.enemyKilled()
 				this.setState({ enemy })
 			}
 
 			if (player.isDead) {
-				alert('Game Over! ' + level)
-				clearInterval(interval)
+				this.death()
+				return
 			}
-			
+
 			this.forceUpdate()
-		}, 1000)
+		}, 100)
+	}
+
+	componentWillUnmount() {
+		clearInterval(this.interval)
 	}
 
 	generateSquad() {
@@ -84,27 +94,30 @@ class App extends Component {
 		const { player, enemy, squad } = this.state
 
 		return (
-			<View>
+			<View style={styles.container}>
 				<Stats hp={enemy.stats.hp} maxHp={enemy.stats.maxHp} />
 				<View style={styles.field}>
 					{squad.map((ship, i) => (
 						<Ship {...ship} position="top" key={i} />
 					))}
 				</View>
-				<DamageIndicator />
 				<View style={styles.field}>
 					<Ship faction="dark-void" type={2} position="bottom" />
 					<Ship faction="dark-void" type={3} position="bottom" />
 					<Ship faction="dark-void" type={0} position="bottom" />
 					<Ship faction="dark-void" type={1} position="bottom" />
 				</View>
-				<Stats hp={player.stats.hp} maxHp={player.stats.maxHp} />
+				<Stats hp={player.stats.hp} maxHp={player.stats.maxHp} position="bottom" />
 			</View>
 		)
 	}
 }
 
 const styles = StyleSheet.create({
+	container: {
+		flex: 1
+	},
+
 	field: {
 		flex: 1,
 		flexDirection: 'row',

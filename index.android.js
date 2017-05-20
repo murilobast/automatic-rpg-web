@@ -8,10 +8,10 @@ import React, { Component } from 'react';
 import { Dimensions, StatusBar, StyleSheet, View, AppRegistry, Image } from 'react-native'
 
 // Constants
-import colors from './app/constants/colors'
+import colors from './src/constants/colors'
 
 // Components
-import App from './app/main'
+import App from './src/containers/App'
 
 const { height, width } = Dimensions.get('window')
 
@@ -25,7 +25,7 @@ class Extraction extends Component {
 					backgroundColor="rgba(0, 0, 0, 0.1)"
 				/>
 				<Image
-					source={require('./app/assets/images/bg1.jpg')}
+					source={require('./src/assets/images/bg1.jpg')}
 					style={styles.imageContainer}
 					resizeMode="cover"
 				>
@@ -52,4 +52,4 @@ const styles = StyleSheet.create({
 	}
 });
 
-AppRegistry.registerComponent('Extraction', () => Extraction);
+AppRegistry.registerComponent('Extraction', () => App);

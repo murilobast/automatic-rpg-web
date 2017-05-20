@@ -11,10 +11,12 @@ class Damage extends Component {
 	}
 
 	animate() {
-		const timing = Animated.timing;
+		const timing = Animated.timing
+		const { inverted } = this.props
+
 		Animated.parallel([
 			timing(this.state.pos, {
-				toValue: 100,
+				toValue: inverted ? -100 : 100,
 				duration: 1200
 			}),
 			timing(this.state.opacity, {

@@ -47,12 +47,14 @@ class DamageIndicator extends Component {
 
 	render() {
 		const { queue } = this.state
+		const { position } = this.props
 
 		return (
 			<View>
 				{queue.map(({ value, id }) => (
 					<Damage
 						damage={value}
+						inverted={position === "bottom"}
 						key={id}
 					/>
 				))}
