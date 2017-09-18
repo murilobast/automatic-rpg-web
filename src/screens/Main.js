@@ -74,18 +74,19 @@ class Main extends Component {
 const styles = StyleSheet.create({
 	wrapper: {
 		flex: 1,
-		alignItems: 'center'
+		alignItems: 'center',
+		paddingVertical: 24
 	},
 
 	topArea: {
 		width,
-		paddingHorizontal: 20,
+		paddingHorizontal: 12,
 		flexDirection: 'row',
 		justifyContent: 'space-between'
 	},
 
 	logo: {
-		width: width - 40,
+		width: width - 24,
 		marginTop: 20,
 		height: height / 4
 	},

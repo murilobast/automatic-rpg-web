@@ -53,7 +53,7 @@ class AppNavigator extends Component {
 		return (
 			<View style={styles.container}>
 				<Image
-					source={require('../assets/images/bg1.jpg')}
+					source={require('../assets/images/bg3.jpg')}
 					style={styles.imageContainer}
 					resizeMode="cover"
 				>
@@ -66,7 +66,7 @@ class AppNavigator extends Component {
 						navigationState={navigationState}
 						style={styles.container}
 						render={props => (
-							<View style={styles.container}>
+							<View style={styles.viewContainer}>
 								<NavigationCard
 									{...props}
 									style={styles.container}
@@ -87,14 +87,18 @@ class AppNavigator extends Component {
 const styles = StyleSheet.create({
 	imageContainer: {
 		width,
-		paddingVertical: 24,
-		flex: 1,
-		backgroundColor: 'rgba(0, 0, 0, 0)'
+		flex: 1
 	},
 
 	container: {
 		flex: 1,
 		backgroundColor: 'rgba(0, 0, 0, 0)'
+	},
+
+	viewContainer: {
+		flex: 1,
+		backgroundColor: 'rgba(0, 0, 0, .25)',
+		paddingVertical: 20
 	}
 })
 

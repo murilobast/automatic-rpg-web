@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import { Animated, Easing, Dimensions, Image } from 'react-native'
 
 // Constants
@@ -8,7 +8,7 @@ import bosses from '../../constants/bosses'
 const { height, width } = Dimensions.get('window')
 const DURATION = 2000
 
-class PlayerShip extends PureComponent {
+class PlayerShip extends Component {
 	state = {
 		pan: new Animated.ValueXY()
 	}

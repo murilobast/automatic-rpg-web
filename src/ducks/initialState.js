@@ -36,7 +36,8 @@ export default {
 	battle: {
 		level: 0,
 		baseGold: 25,
-		totalGold: 0
+		totalGold: 0,
+		damageQueue: []
 	},
 
 	navigation: {

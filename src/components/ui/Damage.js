@@ -1,20 +1,22 @@
 import React, { Component } from 'react'
-import { Animated, StyleSheet, Text } from 'react-native'
+import {
+	Animated: { parallel, Text, Value, timing },
+	StyleSheet,
+	Text
+} from 'react-native'
 
 // Constants
 import colors from '../../constants/colors'
 
 class Damage extends Component {
 	state = {
-		pos: new Animated.Value(0),
-		opacity: new Animated.Value(1)
+		pos: new Value(0),
+		opacity: new Value(1)
 	}
 
 	animate() {
-		const timing = Animated.timing
 		const { inverted } = this.props
-
-		Animated.parallel([
+		parallel([
 			timing(this.state.pos, {
 				toValue: inverted ? -100 : 100,
 				duration: 1200
@@ -28,18 +30,21 @@ class Damage extends Component {
 
 	componentWillMount() {
 		this.animate()
+		setTimeout(() => {
+			this.props.clearDamage()
+		}, 500)
 	}
 
 	render() {
 		return (
-			<Animated.Text
+			<Text
 				style={[
 					styles.text,
 					{ bottom: this.state.pos, opacity: this.state.opacity }
 				]}
 			>
 				{this.props.damage}
-			</Animated.Text>
+			</Text>
 		)
 	}
 }
@@ -49,7 +54,7 @@ const styles = StyleSheet.create({
 		position: 'absolute',
 		color: colors.red,
 		fontWeight: '500',
-		paddingHorizontal: 4 
+		paddingHorizontal: 4
 	}
 })
 
